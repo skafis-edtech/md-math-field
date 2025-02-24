@@ -1,11 +1,12 @@
 import "./App.css";
-import { MdMathField } from "md-math-field";
+//import { Button } from "../../../dist/react/Button.js";
+import { Button } from "md-math-field";
 
 function App() {
   return (
     <>
-      <h1>MdMathField:</h1>
-      <MdMathField />
+      <h1>Button:</h1>
+      <Button text="hi" onClick={() => alert("hi")} />
     </>
   );
 }
