@@ -3,19 +3,37 @@
   "author": "skafis",
   "version": "1.1.0",
   "description": "A MdMathField (carta-md with mathlive) package with Web Component, React and Svelte components",
-  "main": "dist/react/index.js",
-  "types": "dist/react/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/core/index.d.ts",
+      "import": "./dist/core/button.js",
+      "require": "./dist/core/button.js"
+    },
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react/index.js",
+      "require": "./dist/react/index.js"
+    },
+    "./svelte": {
+      "types": "./dist/svelte/Button.d.ts",
+      "svelte": "./dist/svelte/Button.js"
+    }
+  },
   "scripts": {
-    "build": "tsc && babel src/react --out-dir dist/react --copy-files",
+    "build": "npm run build:react && npm run build:svelte",
+    "build:react": "tsc && babel src/react --out-dir dist/react --copy-files",
+    "build:svelte": "node scripts/build-svelte.js",
     "prepublishOnly": "npm run build",
-    "test-react": "npm run build && npm link && cd test-apps/react && npm link md-math-field && npm run dev"
+    "test": "npm run test:react && npm run test:svelte",
+    "test:react": "npm run build && npm link && cd test-apps/react && npm link md-math-field && npm run dev",
+    "test:svelte": "npm run build && npm link && cd test-apps/svelte && npm link md-math-field && npm run dev"
   },
   "devDependencies": {
     "@babel/cli": "^7.26.4",
     "@babel/core": "^7.26.9",
     "@babel/preset-env": "^7.26.9",
     "@babel/preset-react": "^7.26.3",
-    "svelte": "^5.20.3",
+    "svelte": "^5.20.4",
     "typescript": "^5.7.3"
   },
   "peerDependencies": {

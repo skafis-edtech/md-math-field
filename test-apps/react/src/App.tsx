@@ -1,6 +1,6 @@
 import "./App.css";
 //import { Button } from "../../../dist/react/Button.js";
-import { Button } from "md-math-field";
+import { Button } from "md-math-field/react";
 
 function App() {
   return (

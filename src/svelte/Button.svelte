@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
     import { createButton } from "../core/button";
     import { onMount } from "svelte";
   
-    export let text;
-    export let onClick;
+    export let text: string;
+    export let onClick: () => void;
   
     let container;
   
