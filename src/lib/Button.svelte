@@ -10,7 +10,7 @@
     onMount(() => {
       container.appendChild(createButton(text, onClick));
     });
-  </script>
+</script>
   
-  <div bind:this={container}></div>
+<div bind:this={container}></div>
   

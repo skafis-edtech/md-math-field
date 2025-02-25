@@ -15,16 +15,15 @@
       "require": "./dist/react/index.js"
     },
     "./svelte": {
-      "types": "./dist/svelte/Button.d.ts",
-      "svelte": "./dist/svelte/Button.js"
+      "types": "./dist/svelte/Button.svelte.d.ts",
+      "svelte": "./dist/svelte/Button.svelte"
     }
   },
   "scripts": {
-    "build": "npm run build:react && npm run build:svelte",
+    "build": "npm run build:svelte && npm run build:react",
     "build:react": "tsc && babel src/react --out-dir dist/react --copy-files",
-    "build:svelte": "node scripts/build-svelte.js",
+    "build:svelte": "npx svelte-package && mv dist svelte && mkdir dist && mv svelte dist/svelte",
     "prepublishOnly": "npm run build",
-    "test": "npm run test:react && npm run test:svelte",
     "test:react": "npm run build && npm link && cd test-apps/react && npm link md-math-field && npm run dev",
     "test:svelte": "npm run build && npm link && cd test-apps/svelte && npm link md-math-field && npm run dev"
   },
@@ -33,11 +32,16 @@
     "@babel/core": "^7.26.9",
     "@babel/preset-env": "^7.26.9",
     "@babel/preset-react": "^7.26.3",
+    "@sveltejs/package": "^2.3.10",
     "svelte": "^5.20.4",
     "typescript": "^5.7.3"
   },
   "peerDependencies": {
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "svelte": "^5.20.4"
+  },
+  "dependencies": {
+    "@sveltejs/vite-plugin-svelte": "^5.0.3"
   }
 }
